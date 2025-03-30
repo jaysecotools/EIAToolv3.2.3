@@ -1,0 +1,214 @@
+/* General Reset */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eef5f2; /* Soft green-blue background */
+    color: #333; /* Neutral text color for readability */
+    line-height: 1.6;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    padding: 20px 10px;
+    background-color: #2a6f4b; /* Deep forest green */
+    color: #ffffff; /* White text for strong contrast */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 26px; /* Adjusted for professional styling */
+    font-weight: bold;
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Card Section Styling */
+.card {
+    background: #ffffff; /* Clean white for cards */
+    border: 1px solid #d0d6d3; /* Subtle grey-green border */
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds subtle depth */
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Hover effect for interactivity */
+    border: 1px solid #6ba583; /* Highlighted green border */
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #2a6f4b; /* Deep green for headings */
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adds spacing between form elements */
+}
+
+form label {
+    flex: 1 1 100%; /* Labels take up full width */
+    font-weight: bold;
+    color: #2a6f4b; /* Matches the theme */
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="date"],
+form select,
+form textarea {
+    flex: 1 1 calc(50% - 20px); /* Two fields per row */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #d0d6d3;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f9fbfa;
+}
+
+form textarea {
+    resize: vertical;
+}
+
+/* Slider Styling */
+input[type="range"] {
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, #6ba583 0%, #f0c75e 50%, #c84f43 100%); /* Gradient */
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #2a6f4b; /* Deep green */
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Recommendations Section */
+#recommendations ul {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+#recommendations li {
+    margin-bottom: 5px;
+    color: #2a6f4b;
+}
+
+/* Risk Level Styling */
+#risk-level {
+    font-weight: bold;
+    color: #6ba583; /* Default green for low risk */
+}
+
+/* Button Styling */
+.button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #2a6f4b;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #1f573b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button:active {
+    background-color: #145026;
+    transform: translateY(2px);
+}
+
+/* Toggle Button Styling */
+#toggleButton {
+    background-color: #2a6f4b; /* Deep forest green */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 10px 20px; /* Some padding */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make the button inline-block */
+    font-size: 16px; /* Increase font size */
+    margin: 10px 0; /* Some margin */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow */
+}
+
+#toggleButton:hover {
+    background-color: #1f573b; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
+
+#toggleButton:active {
+    background-color: #145026; /* Even darker green on click */
+    transform: translateY(2px); /* Slight press effect */
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #dcebe5;
+    color: #2a6f4b;
+    font-weight: bold;
+}
+
+/* Disclaimer Section */
+.disclaimer {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    form input[type="text"],
+    form input[type="number"],
+    form input[type="date"],
+    form select,
+    form textarea {
+        flex: 1 1 100%; /* Single-column layout */
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Impact Assessment Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js" defer></script>
+    <style>
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Environmental Impact Assessment Tool</h1>
+        </header>
+
+        <!-- Project Details Section -->
+        <section class="card">
+            <h2>Project Details</h2>
+            <form id="project-details-form">	
+                <label for="project-name">Project Name:</label>
+                <input type="text" id="project-name" placeholder="Enter the project name" required>
+
+                <label for="location">Location:</label>
+                <input type="text" id="location" placeholder="e.g., GPS coordinates or address" required>
+
+                <label for="assessor-name">Assessor Name:</label>
+                <input type="text" id="assessor-name" placeholder="Enter the assessor's name" required>
+
+                <label for="date">Date of Assessment:</label>
+                <input type="date" id="date" required>
+
+                <label for="project-description">Project Description:</label>
+                <textarea id="project-description" rows="3" placeholder="Provide a detailed description..."></textarea>
+
+                <label for="project-purpose">Purpose of the Project:</label>
+                <textarea id="project-purpose" rows="3" placeholder="State the project's goals and objectives..."></textarea>
+            </form>
+        </section>
+
+        <!-- Timeline Visualization -->
+<section class="card">
+    <h2>Timeline Visualization</h2>
+    <div id="timeline-container">
+        <!-- Timeline will be populated dynamically -->
+    </div>
+    <form id="add-milestone-form">
+        <h4>Add a New Milestone</h4>
+        <label for="milestone-name">Milestone Name:</label>
+        <input type="text" id="milestone-name" placeholder="e.g., Final Review Meeting" required>
+
+        <label for="milestone-date">Date:</label>
+        <input type="date" id="milestone-date" required>
+
+        <button type="button" id="add-milestone-button">Add Milestone</button>
+    </form>
+</section>
+
+        <!-- Site Information Section -->
+        <section class="card">
+            <h2>Site Information</h2>
+            <form>
+                <label for="flora-fauna">Flora & Fauna Species Observed:</label>
+                <textarea id="flora-fauna" rows="3" placeholder="List observed species here..."></textarea>
+
+                <label for="soil-types">Soil Types:</label>
+                <select id="soil-types">
+                    <option value="sandy">Sandy</option>
+                    <option value="loam">Loam</option>
+                    <option value="clay">Clay</option>
+                    <option value="clay loam">Clay Loam</option>
+                    <option value="sandy loam">Sandy Loam</option>
+                    <option value="peat">Peat</option>
+                    <option value="silt">Silt</option>
+                </select>
+
+                <label for="waterways">Waterways:</label>
+                <select id="waterways">
+                    <option value="none">None</option>
+                    <option value="river">River</option>
+                    <option value="stream">Stream</option>
+                    <option value="wetland">Wetland</option>
+                    <option value="pond">Pond</option>
+                    <option value="lake">Lake</option>
+                </select>
+
+                <label for="ecosystems-distance">Distance to Sensitive Ecosystems (km):</label>
+                <input type="number" id="ecosystems-distance" placeholder="Enter distance in km">
+
+                <label for="infrastructure-distance">Distance to Critical Infrastructure (km):</label>
+                <input type="number" id="infrastructure-distance" placeholder="Enter distance in km">
+
+                <label for="land-use">Land Use History:</label>
+                <textarea id="land-use" rows="3" placeholder="Provide details about past land usage..."></textarea>
+
+                <label for="current-activities">Current Site Activities:</label>
+                <textarea id="current-activities" rows="3" placeholder="Describe activities currently taking place..."></textarea>
+
+                <label for="site-accessibility">Site Accessibility:</label>
+                <input type="text" id="site-accessibility" placeholder="Describe accessibility...">
+            </form>
+        </section>
+
+        <!-- Activities Section -->
+        <section class="card">
+            <h2>Activities</h2>
+            <ul id="activitiesList">
+                <li><input type="checkbox" value="Invasive Species Control"> Invasive Species Control</li>
+                <li><input type="checkbox" value="Revegetation"> Revegetation</li>
+                <li><input type="checkbox" value="Erosion Control Structures"> Erosion Control Structures</li>
+                <li><input type="checkbox" value="Waterway Restoration"> Waterway Restoration</li>
+                <li><input type="checkbox" value="Wildlife Habitat Creation"> Wildlife Habitat Creation</li>
+                <li><input type="checkbox" value="Pest Management"> Pest Management</li>
+                <li class="hidden"><input type="checkbox" value="Forest Management"> Forest Management</li>
+                <li class="hidden"><input type="checkbox" value="Wetland Conservation"> Wetland Conservation</li>
+                <li class="hidden"><input type="checkbox" value="Sustainable Agriculture Practices"> Sustainable Agriculture Practices</li>
+                <li class="hidden"><input type="checkbox" value="Riparian Buffer Zones Establishment"> Riparian Buffer Zones Establishment</li>
+                <li class="hidden"><input type="checkbox" value="Soil Conservation Techniques"> Soil Conservation Techniques</li>
+                <li class="hidden"><input type="checkbox" value="Water Conservation Measures"> Water Conservation Measures</li>
+                <li class="hidden"><input type="checkbox" value="Biodiversity Monitoring"> Biodiversity Monitoring</li>
+                <li class="hidden"><input type="checkbox" value="Carbon Sequestration Projects"> Carbon Sequestration Projects</li>
+                <li class="hidden"><input type="checkbox" value="Integrated Water Resource Management (IWRM)"> Integrated Water Resource Management (IWRM)</li>
+                <li class="hidden"><input type="checkbox" value="Integrated Coastal Zone Management (ICZM)"> Integrated Coastal Zone Management (ICZM)</li>
+                <li class="hidden"><input type="checkbox" value="Marine Spatial Planning (MSP)"> Marine Spatial Planning (MSP)</li>
+                <li class="hidden"><input type="checkbox" value="Ecosystem-based Adaptation (EbA)"> Ecosystem-based Adaptation (EbA)</li>
+                <li class="hidden"><input type="checkbox" value="Ecosystem-based Disaster Risk Reduction (Eco-DRR)"> Ecosystem-based Disaster Risk Reduction (Eco-DRR)</li>
+                <li class="hidden"><input type="checkbox" value="Pollution Control Measures"> Pollution Control Measures</li>
+                <li class="hidden"><input type="checkbox" value="Renewable Energy Projects"> Renewable Energy Projects</li>
+                <li class="hidden"><input type="checkbox" value="Waste Reduction and Recycling Programs"> Waste Reduction and Recycling Programs</li>
+                <li class="hidden"><input type="checkbox" value="Community Engagement and Education"> Community Engagement and Education</li>
+                <li class="hidden"><input type="checkbox" value="Climate Change Mitigation Strategies"> Climate Change Mitigation Strategies</li>
+                <li class="hidden"><input type="checkbox" value="Green Infrastructure Development"> Green Infrastructure Development</li>
+                <li class="hidden"><input type="checkbox" value="Sustainable Land Use Planning"> Sustainable Land Use Planning</li>
+                <li class="hidden"><input type="checkbox" value="Environmental Impact Assessments (EIA)"> Environmental Impact Assessments (EIA)</li>
+                <li class="hidden"><input type="checkbox" value="Habitat Restoration Projects"> Habitat Restoration Projects</li>
+            </ul>
+            <button id="toggleButton" onclick="toggleActivities()">Toggle Activities</button>
+        </section>
+
+        <!-- Risk Assessment Section -->
+        <section class="card">
+            <h2>Risk Assessment</h2>
+            <div>
+                <label for="erosion">Erosion Impact:</label>
+                <input type="range" id="erosion" min="0" max="100" value="0">
+                <output id="erosion-value">0</output>
+            </div>
+            <div>
+                <label for="vegetation">Vegetation Damage:</label>
+                <input type="range" id="vegetation" min="0" max="100" value="0">
+                <output id="vegetation-value">0</output>
+            </div>
+            <div>
+                <label for="water-quality">Water Quality Impact:</label>
+                <input type="range" id="water-quality" min="0" max="100" value="0">
+                <output id="water-quality-value">0</output>
+            </div>
+            <div>
+                <label for="habitat-disruption">Habitat Disruption:</label>
+                <input type="range" id="habitat-disruption" min="0" max="100" value="0">
+                <output id="habitat-disruption-value">0</output>
+            </div>
+            <div>
+                <label for="air-quality">Air Quality Impact:</label>
+                <input type="range" id="air-quality" min="0" max="100" value="0">
+                <output id="air-quality-value">0</output>
+            </div>
+            <div>
+                <label for="noise-pollution">Noise Pollution:</label>
+                <input type="range" id="noise-pollution" min="0" max="100" value="0">
+                <output id="noise-pollution-value">0</output>
+            </div>
+            <div>
+                <label for="waste-management">Waste Management:</label>
+                <input type="range" id="waste-management" min="0" max="100" value="0">
+                <output id="waste-management-value">0</output>
+            </div>
+            <div>
+                <label for="biodiversity">Biodiversity Index:</label>
+                <input type="range" id="biodiversity" min="0" max="100" value="0">
+                <output id="biodiversity-value">0</output>
+            </div>
+            <div>
+                <label for="carbon-footprint">Carbon Footprint:</label>
+                <input type="range" id="carbon-footprint" min="0" max="100" value="0">
+                <output id="carbon-footprint-value">0</output>
+            </div>
+        </section>
+
+        <!-- Radar Chart Section -->
+        <section class="card">
+            <h2>Radar Chart</h2>
+            <canvas id="impact-chart"></canvas>
+        </section>
+
+        <!-- Heatmap Section -->
+        <section class="card">
+            <h2>Heatmap</h2>
+            <canvas id="heatmap-canvas"></canvas>
+        </section>
+
+        <!-- Progress Tracker -->
+        <section class="card">
+            <h2>Progress Tracker</h2>
+            <div id="progress-tracker">Progress will appear here.</div>
+        </section>
+
+        <!-- Mitigation Measures Section -->
+        <section class="card">
+            <h2>Mitigation Measures</h2>
+            <div id="mitigation-measures">
+                <!-- Mitigation measures will be dynamically populated -->
+            </div>
+        </section>
+
+        <!-- Risk Comparison -->
+        <section class="card">
+            <h2>Risk Comparison</h2>
+            <div id="risk-comparison">
+                <!-- Comparison results will be displayed dynamically -->
+            </div>
+        </section>
+
+        <!-- Long-term Impact Projections -->
+        <section class="card">
+            <h2>Long-term Impact Projections</h2>
+            <div id="long-term-projections">Projections will be displayed here.</div>
+        </section>
+
+        <!-- Policy Compliance Checklist -->
+        <section class="card">
+            <h2>Policy Compliance Checklist</h2>
+            <div id="policy-compliance-checklist"></div>
+            <div id="compliance-score"></div>
+        </section>
+
+        <!-- Budget Allocations -->
+        <section class="card">
+            <h2>Budget Allocations</h2>
+            <label for="project-area">Project Area (hectares):</label>
+            <input type="number" id="project-area" placeholder="Enter project area in hectares">
+            <div id="budget-allocations">Estimated costs will be displayed here.</div>
+        </section>
+
+        <!-- Add Stakeholders -->
+        <section class="card">
+            <h2>Add Stakeholders</h2>
+            <div id="stakeholder-inputs">
+                <form id="stakeholder-form">
+                    <label for="stakeholder-role">Role:</label>
+                    <input type="text" id="stakeholder-role" placeholder="e.g., Project Manager" required>
+
+                    <label for="stakeholder-status">Status:</label>
+                    <select id="stakeholder-status" required>
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="In Progress">In Progress</option>
+                    </select>
+
+                    <label for="stakeholder-email">Email:</label>
+                    <input type="email" id="stakeholder-email" placeholder="e.g., pm@example.com">
+
+                    <label for="stakeholder-phone">Phone:</label>
+                    <input type="tel" id="stakeholder-phone" placeholder="e.g., 123-456-7890">
+
+                    <label for="stakeholder-comments">Comments:</label>
+                    <textarea id="stakeholder-comments" placeholder="e.g., Awaiting feedback"></textarea>
+
+                    <button type="button" id="add-stakeholder" class="button">Add Stakeholder</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Stakeholder Involvement Tracker -->
+        <section class="card">
+            <h2>Stakeholder Involvement Tracker</h2>
+            <div id="stakeholder-tracker"></div>
+            <div id="stakeholder-progress">Progress: 0% confirmed</div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section class="card">
+            <h2>Recommendations</h2>
+            <div id="recommendations"></div>
+        </section>
+
+        <!-- Interactive Guidance Section -->
+        <section class="card">
+            <h2>Interactive Guidance</h2>
+            <div id="interactive-guidance"></div>
+        </section>
+
+        <!-- User Feedback -->
+        <section class="card">
+            <h2>User Feedback</h2>
+            <div id="user-feedback">
+                <h4>We value your feedback!</h4>
+                <form id="feedback-form">
+                    <label for="feedback">Please share your thoughts:</label>
+                    <textarea id="feedback" rows="3" placeholder="Type your feedback here..."></textarea>
+                    <button type="submit" class="button">Submit Feedback</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Notifications -->
+        <section class="card">
+            <h2>Notifications</h2>
+            <div id="notifications"></div>
+        </section>
+
+        <!-- Data Management and Buttons -->
+<section class="card">
+    <h2>Data Management</h2>
+    <button id="generate-report" class="button">Generate PDF Report</button>
+    <button id="save-local" class="button">Save Progress</button>
+    <button id="load-progress" class="button">Load From CSV</button>
+    <input type="file" id="csv-upload" accept=".csv" style="display: none;"> <!-- Hidden file input -->
+    <button id="delete-data" class="button" style="background-color: #c84f43;">Delete Data</button>
+</section>
+
+        <!-- Disclaimer Section -->
+        <section class="card disclaimer">
+            <p>
+                Disclaimer: This tool is intended for informational purposes only. Users are responsible for ensuring regulatory compliance and accuracy of data provided.
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Produced with Environmental Impact Assessment Tool by Jay Rowley 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
