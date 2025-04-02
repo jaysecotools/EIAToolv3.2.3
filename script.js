@@ -1124,6 +1124,9 @@ function deleteAssessmentData() {
         document.getElementById("stakeholder-tracker").innerHTML = "";
         document.getElementById("notifications").innerHTML = "";
 
+        // Refresh the page       
+        location.reload(); 
+        
         // Notify user
         notifyUser("All data deleted.");
 
